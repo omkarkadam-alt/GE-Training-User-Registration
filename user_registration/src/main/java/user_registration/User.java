@@ -5,11 +5,13 @@ public class User {
     String lastName;
     String email;
     String phoneNumber;
+    String password;
 
     User(){
         this.firstName = "";
         this.lastName = "";
         this.email = "";
         phoneNumber = "";
+        password = "";
     }
 }

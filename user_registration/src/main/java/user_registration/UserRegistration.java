@@ -9,6 +9,7 @@ public class UserRegistration {
         LastNameValidator.validateLastName(user);
         EmailValidator.validateEmail(user);
         PhoneNumberValidator.validatePhoneNumber(user);
+        PasswordValidator.validatePassword(user);
 
     }
     public static void main(String[] args) {
