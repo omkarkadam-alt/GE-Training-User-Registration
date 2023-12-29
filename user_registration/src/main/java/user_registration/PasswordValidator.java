@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 
 public class PasswordValidator {
 
-    private static String name = "^.{8,}$";
+    private static String name = "^(?=.*?[A-Z]).{8,}$";
     private static Pattern pattern = Pattern.compile(name);
 
     static Scanner scannerObject = new Scanner(System.in);
