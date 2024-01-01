@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 
 public class PasswordValidator {
 
-    private static String name = "^(?=.*[0-9])(?= *[A-Z])(?=.*[0-9])(?=[a-zA-zO-9]*[^a-zA-ZO-9](a-zA-ZO-9]*$)(.){8,}$";
+    private static String name = "^(?=.*?[A-Z])(?=.*?[0-9])(?=[a-zA-Z0-9]*[^a-zA-Z0-9][a-zA-Z0-9]*$).{8,}$";
     private static Pattern pattern = Pattern.compile(name);
 
     static Scanner scannerObject = new Scanner(System.in);
