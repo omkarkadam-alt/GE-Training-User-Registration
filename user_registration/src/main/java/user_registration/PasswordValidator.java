@@ -11,20 +11,24 @@ public class PasswordValidator {
 
     static Scanner scannerObject = new Scanner(System.in);
 
-    public static boolean isValid(String password){
+    public static boolean isValid(String password) throws UserRegistrationException{
         Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
+        
+        if(!matcher.matches()){
+            throw new UserRegistrationException("Invalid Password");
+        }
+        return true;
     }
 
     static void validatePassword(User user){
         System.out.println("Enter Password: ");
         user.password = scannerObject.nextLine();
 
-        while(isValid(user.password) == false){
-            System.out.println("Invalid Password, please enter again: ");
-            user.password = scannerObject.nextLine();
+        try{
+            isValid(user.password);
+            System.out.println("Password has been successfully saved.");
+        } catch(UserRegistrationException e){
+            System.out.println(e.getMessage());
         }
-
-        System.out.println("Password has been successfully saved.");
     }
 }

@@ -11,20 +11,23 @@ public class FirstNameValidator {
 
     static Scanner scannerObject = new Scanner(System.in);
 
-    public static boolean isValid(String firstName){
+    public static boolean isValid(String firstName) throws UserRegistrationException{
         Matcher matcher = pattern.matcher(firstName);
-        return matcher.matches();
+        if(!matcher.matches()){
+            throw new UserRegistrationException("Invalid First Name");
+        }
+        return true;
     }
 
-    static void validateFirstName(User user){
+    static void validateFirstName(User user) {
         System.out.println("Enter your first Name: ");
         user.firstName = scannerObject.nextLine();
 
-        while(isValid(user.firstName) == false){
-            System.out.println("Invalid First Name, please enter again: ");
-            user.firstName = scannerObject.nextLine();
+        try {
+            isValid(user.firstName);
+            System.out.println("First Name has been successfully saved.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-
-        System.out.println("First Name has been successfully saved.");
     }
 }

@@ -11,21 +11,24 @@ public class PhoneNumberValidator {
     
         static Scanner scannerObject = new Scanner(System.in);
     
-        public static boolean isValid(String phoneNumber){
+        public static boolean isValid(String phoneNumber) throws UserRegistrationException{
             Matcher matcher = pattern.matcher(phoneNumber);
-            return matcher.matches();
+            if(!matcher.matches()){
+                throw new UserRegistrationException("Invalid Phone Number");
+            }
+            return true;
         }
     
-        static void validatePhoneNumber(User user){
+        static void validatePhoneNumber(User user) {
             System.out.println("Enter your Phone Number: ");
             user.phoneNumber = scannerObject.nextLine();
     
-            while(isValid(user.phoneNumber) == false){
-                System.out.println("Invalid Phone Number, please enter again: ");
-                user.phoneNumber = scannerObject.nextLine();
+            try {
+                isValid(user.phoneNumber);
+                System.out.println("Phone Number has been successfully saved.");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-    
-            System.out.println("Phone Number has been successfully saved.");
         }
     }
     

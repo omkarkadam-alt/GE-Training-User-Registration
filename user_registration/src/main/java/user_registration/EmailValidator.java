@@ -11,21 +11,24 @@ public class EmailValidator {
 
     static Scanner scannerObject = new Scanner(System.in);
 
-    public static boolean isValid(String email){
+    public static boolean isValid(String email) throws UserRegistrationException{
         Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
+        if(!matcher.matches()){
+            throw new UserRegistrationException("Invalid Email");
+        }
+        return true;
     }
 
     static void validateEmail(User user){
         System.out.println("Enter your Email: ");
         user.email = scannerObject.nextLine();
 
-        while(isValid(user.email) == false){
-            System.out.println("Invalid Email, please enter again: ");
-            user.email = scannerObject.nextLine();
+        try {
+            isValid(user.email);
+            System.out.println("Email has been successfully saved.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-
-        System.out.println("Email has been successfully saved.");
     }
 }
 
